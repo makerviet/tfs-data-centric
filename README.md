@@ -79,9 +79,54 @@ Hoặc tải về dữ liệu mẫu tại [đây](https://github.com/makerviet/v
 
 ## 2. Huấn luyện và đánh giá mô hình đã huấn luyện trên môi trường local
 
-- Các bước huấn luyện
-- Các bước đánh giá
-- NOTE: Không được thay đổi các siêu tham số của mô hình
+### 2.1. Huấn luyện
+
+Để huấn luyện mô hình, các đội chơi chạy lệnh sau:
+
+```shell
+YOLOX_DATADIR=datasets/vtfs python3 tools/train.py
+```
+
+Thay `datasets/vtfs` bằng đường dẫn tới thư mục chứa dữ liệu của đội chơi.
+
+### 2.2. Đánh giá
+
+Để đánh giá mô hình, các đội chơi chạy lệnh sau:
+
+```shell
+YOLOX_WEIGHTS=YOLOX_outputs/tfs_nano/best_ckpt.pth YOLOX_DATADIR=datasets/vtfs python3 tools/eval.py
+```
+
+Kết quả sẽ được in ra như sau:
+
+```
+Average forward time: 3.49 ms, Average NMS time: 0.40 ms, Average inference time: 3.89 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.244
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.503
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.206
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.214
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.517
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.331
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.351
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.351
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.322
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.625
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+per class AP:
+| class    | AP     | class   | AP     | class    | AP     |
+|:---------|:-------|:--------|:-------|:---------|:-------|
+| stop     | 36.417 | left    | 4.904  | right    | 21.096 |
+| straight | 34.206 | no_left | 23.185 | no_right | 26.510 |
+per class AR:
+| class    | AR     | class   | AR     | class    | AR     |
+|:---------|:-------|:--------|:-------|:---------|:-------|
+| stop     | 41.921 | left    | 25.537 | right    | 34.980 |
+| straight | 38.267 | no_left | 33.463 | no_right | 36.255 |
+```
+
+Kết qủa đánh giá sẽ dựa trên `Average Precision  (AP) @[ IoU=0.50:0.95`.
+
 
 ## 3. Tải lên mô hình và đánh giá trên tập dữ liệu bí mật
 

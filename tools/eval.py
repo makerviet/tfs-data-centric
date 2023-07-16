@@ -52,7 +52,7 @@ def make_parser():
     parser.add_argument(
         "-f",
         "--exp_file",
-        default=None,
+        default="exps/tfs_nano.py",
         type=str,
         help="please input your experiment description file",
     )

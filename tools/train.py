@@ -30,14 +30,14 @@ def make_parser():
         type=str,
         help="url used to set up distributed training",
     )
-    parser.add_argument("-b", "--batch-size", type=int, default=64, help="batch size")
+    parser.add_argument("-b", "--batch-size", type=int, default=8, help="batch size")
     parser.add_argument(
         "-d", "--devices", default=None, type=int, help="device for training"
     )
     parser.add_argument(
         "-f",
         "--exp_file",
-        default=None,
+        default="exps/tfs_nano.py",
         type=str,
         help="plz input your experiment description file",
     )
@@ -118,9 +118,27 @@ def main(exp: Exp, args):
     trainer.train()
 
 
+def check_default_hyperparams(args):
+    error_message = "Please use default hyper parameters for training YOLOX. This is the requirement for a valid submission to FPT Edu Digital Race 2023. More information: https://github.com/makerviet/tfs-data-centric"
+    if (
+        args.batch_size != 8
+        or args.resume
+        or args.ckpt is not None
+        or args.start_epoch is not None
+        or args.num_machines != 1
+        or args.machine_rank != 0
+        or args.cache is not None
+        or args.occupy
+        or args.opts
+        or args.exp_file != "exps/tfs_nano.py"
+    ):
+        raise ValueError(error_message)
+
+
 if __name__ == "__main__":
     configure_module()
     args = make_parser().parse_args()
+    check_default_hyperparams(args)
     exp = get_exp(args.exp_file, args.name)
     exp.merge(args.opts)
     check_exp_value(exp)
