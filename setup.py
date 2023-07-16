@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# Copyright (c) Megvii, Inc. and its affiliates. All Rights Reserved
-
 import re
 import setuptools
 import sys
