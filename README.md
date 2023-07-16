@@ -158,7 +158,7 @@ Gửi mô hình lên hệ thống bằng cách tải lên tệp `submissions/sub
 
 ## 4. Phương pháp xây dựng bộ dữ liệu
 
-### 4.1. Thu thập dữ liệu ảnh:
+### 4.1. Thu thập dữ liệu ảnh
 
 Việc thu thập dữ liệu biển báo có thể được thực hiện từ nhiều nguồn: 
 
@@ -186,3 +186,10 @@ Việc gán nhãn có thể sử dụng bất cứ công cụ nào. Chúng tôi 
 
 Các đội chơi có thể sử dụng các công cụ khác, tuy nhiên cần đảm bảo định dạng đầu ra là định dạng COCO, hoặc có thể chuyển đổi sang COCO để huấn luyện mô hình.
 
+
+### 4.3. Chia tập dữ liệu
+
+Sau khi gán nhãn dữ liệu, các đội chơi có thể chia dữ liệu thành 2 tập nhỏ:
+
+- Tập huấn luyện (train): Tập dữ liệu được sử dụng để huấn luyện mô hình. Tập dữ liệu này có thể chiếm khoảng 80% tổng số dữ liệu.
+- Tập đánh giá (val): Tập dữ liệu được sử dụng để đánh giá mô hình. Tập dữ liệu này có thể chiếm khoảng 20% tổng số dữ liệu.
