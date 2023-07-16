@@ -77,9 +77,25 @@ Hoặc tải về dữ liệu mẫu tại [đây](https://github.com/makerviet/v
 ...
 ```
 
+Tập dữ liệu mẫu là dữ liệu phát hiện biển báo cho xe tự hành mô hình, gồm 11095 ảnh đóng góp bởi 2 nhóm Goodgame và ICT, gồm 6 lớp dữ liệu biển: `stop`, `left`, `right`, `straight`, `no_left`, `no_right`. Xem thêm tại [đây](https://via.makerviet.org/vi/docs/4_resources/via-datasets-1-0/).
+
+Tập dữ liệu đánh giá (private test) để xếp hạng các đội chơi sẽ bao gồm các dữ liệu biển báo trên đường, trong các điều kiện thời tiết khác nhau, bị che khuất, bị mờ. Tập dữ liệu đánh giá sẽ được công bố sau khi kết thúc thử thách.
+
 ## 2. Huấn luyện và đánh giá mô hình đã huấn luyện trên môi trường local
 
 ### 2.1. Huấn luyện
+
+Xoá kết quả huấn luyện cũ (nếu có):
+
+```shell
+rm -rf YOLOX_outputs/tfs_nano
+```
+
+Các bạn cũng có thể di chuyển kết quả huấn luyện cũ vào một thư mục khác để lưu trữ, ví dụ:
+
+```shell
+mv YOLOX_outputs/tfs_nano YOLOX_outputs/tfs_nano_20230716
+```
 
 Để huấn luyện mô hình, các đội chơi chạy lệnh sau:
 
@@ -94,13 +110,13 @@ Thay `datasets/vtfs` bằng đường dẫn tới thư mục chứa dữ liệu 
 Để đánh giá mô hình, các đội chơi chạy lệnh sau:
 
 ```shell
-YOLOX_WEIGHTS=YOLOX_outputs/tfs_nano/best_ckpt.pth YOLOX_DATADIR=datasets/vtfs python3 tools/eval.py
+YOLOX_WEIGHTS=YOLOX_outputs/tfs_nano/best_ckpt.pth YOLOX_DATADIR=datasets/vtfs python3 tools/eval.py --output_result="result.json"
 ```
 
-Kết quả sẽ được in ra như sau:
+Kết quả đánh giá trên môi trường local, tập validation (`val.json`) sẽ được in ra như sau:
 
 ```
-Average forward time: 3.49 ms, Average NMS time: 0.40 ms, Average inference time: 3.89 ms
+Average forward time: 3.47 ms, Average NMS time: 0.40 ms, Average inference time: 3.87 ms
  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.244
  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.503
  Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.206
@@ -123,19 +139,50 @@ per class AR:
 |:---------|:-------|:--------|:-------|:---------|:-------|
 | stop     | 41.921 | left    | 25.537 | right    | 34.980 |
 | straight | 38.267 | no_left | 33.463 | no_right | 36.255 |
+
+Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 24.38631
 ```
 
-Kết qủa đánh giá sẽ dựa trên `Average Precision  (AP) @[ IoU=0.50:0.95`.
-
+- Kết quả đánh giá sẽ dựa trên `Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ])`, trong TH này là `24.38631`.
+- Kết quả đánh giá được ghi ra tệp `result.json` trong thư mục hiện tại.
 
 ## 3. Tải lên mô hình và đánh giá trên tập dữ liệu bí mật
 
-- Các bước tải lên
-- Các bước đánh giá
+Sau khi hoàn thành bước đánh giá, các bạn đóng gói mô hình hiện tại và gửi lên hệ thống với lệnh:
+
+```shell
+python tools/create_submission.py --exp_dir="YOLOX_outputs/tfs_nano" --output="submissions/submission_01.zip"
+```
+
+Gửi mô hình lên hệ thống bằng cách tải lên tệp `submissions/submission_01.zip`. Sau khi tải lên, các đội chơi sẽ nhận được kết quả đánh giá trên tập dữ liệu bí mật (private test) và xếp hạng trên bảng xếp hạng.
 
 ## 4. Phương pháp xây dựng bộ dữ liệu
 
-- Các bước thu thập, gán nhãn dữ liệu
-- Các bước tiền xử lý dữ liệu
-- Gán nhãn dữ liệu với AnyLabeling hoặc labelme. Gợi ý các công cụ khác như CVAT, Label Studio, ...
-- Bí quyết để có bộ dữ liệu tốt
+### 4.1. Thu thập dữ liệu ảnh:
+
+Việc thu thập dữ liệu biển báo có thể được thực hiện từ nhiều nguồn: 
+
+- Các bộ dữ liệu có sẵn.
+- Hình ảnh từ internet.
+- Ảnh chụp thực tế.
+- Ảnh chụp từ các xe mô hình.
+- Ảnh từ các giả lập.
+
+Các đội chơi có thể sử dụng các kĩ thuật xử lý ảnh để tăng cường dữ liệu, tham khảo thêm tại [đây](https://albumentations.ai/). Việc thu thập dữ liệu nên đảm bảo:
+
+- Các dữ liệu thu thập được đủ đa dạng, đại diện cho các tình huống thực tế.
+- Cân bằng số lượng biển báo trong các lớp dữ liệu. Điều này giúp đảm bảo độ chính xác của mô hình.
+
+**Chú ý:** Số lượng dữ liệu trong toàn bộ tập dữ liệu không vượt quá **30.000 ảnh**.
+
+
+### 4.2. Gán nhãn dữ liệu
+
+Việc gán nhãn có thể sử dụng bất cứ công cụ nào. Chúng tôi khuyến nghị một số công cụ sau:
+
+- [AnyLabeling](https://anylabeling.nrl.ai): Gán nhãn trực tiếp trên giao diện Desktop, hỗ trợ gán nhãn tự động với Segment Anything Model. Sau khi gán nhãn dữ liệu, sử dụng [labelme2coco](https://github.com/fcakyon/labelme2coco) để chuyển đổi sang định dạng COCO.
+- [Labelme](https://github.com/wkentaro/labelme): Gán nhãn trực tiếp trên giao diện Desktop, sau đó sử dụng [labelme2coco](https://github.com/fcakyon/labelme2coco) để chuyển đổi sang định dạng COCO.
+- [CVAT](https://www.cvat.ai/), [Label Studio](https://labelstud.io/): Công cụ gán nhãn trên giao diện web, hỗ trợ xuât sang định dạng COCO.
+
+Các đội chơi có thể sử dụng các công cụ khác, tuy nhiên cần đảm bảo định dạng đầu ra là định dạng COCO, hoặc có thể chuyển đổi sang COCO để huấn luyện mô hình.
+

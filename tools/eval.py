@@ -4,7 +4,9 @@
 
 import argparse
 import os
+import json
 import random
+import pathlib
 import warnings
 from loguru import logger
 
@@ -109,6 +111,12 @@ def make_parser():
         default=None,
         nargs=argparse.REMAINDER,
     )
+    parser.add_argument(
+        "--output_result",
+        dest="output_result",
+        help="output result to json file",
+        default=None,
+    )
     return parser
 
 
@@ -190,10 +198,19 @@ def main(exp, args, num_gpu):
         decoder = None
 
     # start evaluate
-    *_, summary = evaluator.evaluate(
+    *x, summary = evaluator.evaluate(
         model, is_distributed, args.fp16, trt_file, decoder, exp.test_size
     )
-    logger.info("\n" + summary)
+    print(summary)
+    final_ap = x[0]
+    print("Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): {:.5f}".format(final_ap * 100))
+    if args.output_result is not None:
+        pathlib.Path(args.output_result).parent.mkdir(parents=True, exist_ok=True)
+        with open(args.output_result, "w") as f:
+            json.dump({
+                "mAP": final_ap,
+                "mAP50": x[1],    
+            }, f)
 
 
 if __name__ == "__main__":
