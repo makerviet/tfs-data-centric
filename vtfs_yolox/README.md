@@ -43,6 +43,5 @@ bash vtfs_yolox/download_data.sh
 ## 3. Training
 
 ```
-export YOLOX_DATADIR=datasets/vtfs/
-python3 tools/train.py -f vtfs_yolox/exps/tfs_nano.py -b 8
+YOLOX_DATADIR=datasets/vtfs python3 tools/train.py -f vtfs_yolox/exps/tfs_nano.py -b 8 --fp16 --cache
 ```

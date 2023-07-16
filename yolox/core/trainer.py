@@ -154,8 +154,13 @@ class Trainer:
         )
         logger.info("init prefetcher, this might take one minute or less...")
         self.prefetcher = DataPrefetcher(self.train_loader)
+
         # max_iter means iters per epoch
-        self.max_iter = len(self.train_loader)
+        # self.max_iter = len(self.train_loader)
+        # vietanhdev: Use specific max_iter instead of len(self.train_loader)
+        # to fix the number of iterations per epoch instead of depending on
+        # the dataset size.
+        self.max_iter = 1000
 
         self.lr_scheduler = self.exp.get_lr_scheduler(
             self.exp.basic_lr_per_img * self.args.batch_size, self.max_iter
