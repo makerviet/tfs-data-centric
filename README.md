@@ -116,31 +116,31 @@ YOLOX_WEIGHTS=YOLOX_outputs/tfs_nano/best_ckpt.pth YOLOX_DATADIR=datasets/vtfs p
 Kết quả đánh giá trên môi trường local, tập validation (`val.json`) sẽ được in ra như sau:
 
 ```
-Average forward time: 3.47 ms, Average NMS time: 0.40 ms, Average inference time: 3.87 ms
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.244
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.503
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.206
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.214
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.517
+Average forward time: 3.48 ms, Average NMS time: 0.42 ms, Average inference time: 3.90 ms
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.428
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.748
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.439
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.405
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.643
  Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.331
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.351
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.351
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.322
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.625
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.518
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.552
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.552
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.530
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.762
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
 per class AP:
 | class    | AP     | class   | AP     | class    | AP     |
 |:---------|:-------|:--------|:-------|:---------|:-------|
-| stop     | 36.417 | left    | 4.904  | right    | 21.096 |
-| straight | 34.206 | no_left | 23.185 | no_right | 26.510 |
+| stop     | 51.866 | left    | 24.375 | right    | 39.133 |
+| straight | 52.599 | no_left | 40.808 | no_right | 48.024 |
 per class AR:
 | class    | AR     | class   | AR     | class    | AR     |
 |:---------|:-------|:--------|:-------|:---------|:-------|
-| stop     | 41.921 | left    | 25.537 | right    | 34.980 |
-| straight | 38.267 | no_left | 33.463 | no_right | 36.255 |
+| stop     | 57.684 | left    | 53.559 | right    | 54.303 |
+| straight | 57.327 | no_left | 51.024 | no_right | 57.004 |
 
-Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 24.38631
+Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 42.80084
 ```
 
 - Kết quả đánh giá sẽ dựa trên `Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ])`, trong TH này là `24.38631`.
