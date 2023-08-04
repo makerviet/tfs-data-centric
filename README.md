@@ -201,3 +201,4 @@ Các bạn dựa vào notebook sau để huấn luyện trên Colab hoặc Kaggl
 
 [notebook.ipynb](notebook.ipynb)
 
+> [Mở trong Google Colab](https://colab.research.google.com/github/makerviet/tfs-data-centric/blob/main/notebook.ipynb).
