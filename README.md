@@ -193,3 +193,11 @@ Sau khi gán nhãn dữ liệu, các đội chơi có thể chia dữ liệu th�
 
 - Tập huấn luyện (train): Tập dữ liệu được sử dụng để huấn luyện mô hình. Tập dữ liệu này có thể chiếm khoảng 80% tổng số dữ liệu.
 - Tập đánh giá (val): Tập dữ liệu được sử dụng để đánh giá mô hình. Tập dữ liệu này có thể chiếm khoảng 20% tổng số dữ liệu.
+
+
+### 4.4. Notebook huấn luyện
+
+Các bạn dựa vào notebook sau để huấn luyện trên Colab hoặc Kaggle:
+
+[notebook.ipynb](notebook.ipynb)
+

@@ -14,7 +14,7 @@ except ImportError:
 def get_package_dir():
     pkg_dir = {
         "yolox.tools": "tools",
-        "yolox.exp.default": "exps/default",
+        "yolox.exp.default": "yolox/exp/default",
     }
     return pkg_dir
 
