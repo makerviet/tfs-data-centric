@@ -140,10 +140,10 @@ per class AR:
 | stop     | 57.684 | left    | 53.559 | right    | 54.303 |
 | straight | 57.327 | no_left | 51.024 | no_right | 57.004 |
 
-Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 42.80084
+Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 42.80084 %
 ```
 
-- Kết quả đánh giá sẽ dựa trên `Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ])`, trong TH này là `24.38631`.
+- Kết quả đánh giá sẽ dựa trên `Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ])`, trong TH này là `42.80084` (%).
 - Kết quả đánh giá được ghi ra tệp `result.json` trong thư mục hiện tại.
 
 ## 3. Tải lên mô hình và đánh giá trên tập dữ liệu bí mật
