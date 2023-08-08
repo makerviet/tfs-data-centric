@@ -18,6 +18,7 @@ class Exp(MyExp):
         self.random_size = (14, 26)
         self.train_ann = "train.json"
         self.val_ann = "val.json"
+        self.test_ann = "test.json"
 
         # --------------- transform config ----------------- #
         self.mirror = 0.0
@@ -44,7 +45,7 @@ class Exp(MyExp):
         self.print_interval = 10
         self.eval_interval = 1
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
-        
+
         # -----------------  testing config ------------------ #
         self.test_size = (416, 416)
         self.test_conf = 0.01
