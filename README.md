@@ -217,6 +217,16 @@ Việc gán nhãn có thể sử dụng bất cứ công cụ nào. Chúng tôi 
         "id": 6,
         "name": "no_right",
         "supercategory": "trafficsign"
+    },
+    {
+        "id": 7,
+        "name": "speed_limit_50",
+        "supercategory": "trafficsign"
+    },
+    {
+        "id": 8,
+        "name": "no_parking_or_waiting",
+        "supercategory": "trafficsign"
     }
 ]
 ```

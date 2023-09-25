@@ -36,6 +36,8 @@ def get_coco_from_labelme_folder(
     coco.add_category(CocoCategory(id=4, name="straight"))
     coco.add_category(CocoCategory(id=5, name="no_left"))
     coco.add_category(CocoCategory(id=6, name="no_right"))
+    coco.add_category(CocoCategory(id=7, name="speed_limit_50"))
+    coco.add_category(CocoCategory(id=8, name="no_parking_or_waiting"))
 
     if coco_category_list is not None:
         coco.add_categories_from_coco_category_list(coco_category_list)
