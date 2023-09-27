@@ -116,30 +116,7 @@ YOLOX_WEIGHTS=YOLOX_outputs/tfs_nano/best_ckpt.pth YOLOX_DATADIR=datasets/vtfs p
 Kết quả đánh giá trên môi trường local, tập validation (`val.json`) sẽ được in ra như sau:
 
 ```
-Average forward time: 3.48 ms, Average NMS time: 0.42 ms, Average inference time: 3.90 ms
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.428
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.748
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.439
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.405
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.643
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.518
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.552
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.552
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.530
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.762
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
-per class AP:
-| class    | AP     | class   | AP     | class    | AP     |
-|:---------|:-------|:--------|:-------|:---------|:-------|
-| stop     | 51.866 | left    | 24.375 | right    | 39.133 |
-| straight | 52.599 | no_left | 40.808 | no_right | 48.024 |
-per class AR:
-| class    | AR     | class   | AR     | class    | AR     |
-|:---------|:-------|:--------|:-------|:---------|:-------|
-| stop     | 57.684 | left    | 53.559 | right    | 54.303 |
-| straight | 57.327 | no_left | 51.024 | no_right | 57.004 |
-
+...
 Final mAP (Average Precision (AP) @[ IoU=0.50:0.95 ]): 42.80084 %
 ```
 
